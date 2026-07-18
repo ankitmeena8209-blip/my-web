@@ -470,14 +470,14 @@ void main() {
 <!-- STITCH_SHADER_END:ANIMATION_3 -->
 <!-- Top Navigation -->
 <nav class="fixed top-0 w-full z-[110] flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base bg-surface/30 backdrop-blur-32 border-b border-white/10">
-<div class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tighter uppercase cursor-pointer" id="nav-logo">BEING_FRZI</div>
+<div class="font-display-lg text-2xl md:text-headline-lg text-on-surface tracking-tighter uppercase cursor-pointer" id="nav-logo">BEING_FRZI</div>
 <div class="hidden md:flex gap-gutter items-center">
 <a class="text-primary border-b-2 border-primary pb-1 font-label-sm uppercase" href="#" id="nav-link-home">Home</a>
 <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#about" id="nav-link-about">About</a>
 <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#archive" id="nav-link-archive">Archives</a>
 <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#" id="nav-link-contact">Contact</a>
 </div>
-<div class="flex items-center gap-base">
+<div class="hidden md:flex items-center gap-base">
 <button id="btn-get-in-touch" class="px-6 py-2 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase">GET IN TOUCH</button>
 <!-- Minimal Spider-Man Mask Icon -->
 <svg class="w-8 h-8 text-surface-tint hover:text-primary hover:scale-110 transition-all cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" id="spidey-nav-icon">
@@ -486,7 +486,35 @@ void main() {
   <path d="M17.5 10.5c-1-1-3.5-1-4.5 1.5-.5 1.25-.5 2.25.5 2.75s2.5-.75 4-4.25z" fill="currentColor" />
 </svg>
 </div>
+<!-- Mobile Controls -->
+<div class="flex md:hidden items-center gap-base">
+<!-- Mobile Spidey Mask Icon -->
+<svg class="w-7 h-7 text-surface-tint hover:text-primary hover:scale-110 transition-all cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" id="spidey-nav-icon-mobile">
+  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 7.523 2 12s4.477 10 10 10z" stroke="currentColor" stroke-opacity="0.3" />
+  <path d="M6.5 10.5c1-1 3.5-1 4.5 1.5.5 1.25.5 2.25-.5 2.75s-2.5-.75-4-4.25z" fill="currentColor" />
+  <path d="M17.5 10.5c-1-1-3.5-1-4.5 1.5-.5 1.25-.5 2.25.5 2.75s2.5-.75 4-4.25z" fill="currentColor" />
+</svg>
+<button id="btn-mobile-menu-toggle" class="p-2 text-on-surface hover:text-primary focus:outline-none" aria-label="Toggle Mobile Menu">
+  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" id="hamburger-icon-path" />
+  </svg>
+</button>
+</div>
 </nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="fixed inset-0 z-[105] bg-[#131313]/95 backdrop-blur-32 border-b border-white/10 opacity-0 pointer-events-none transition-all duration-500 flex flex-col justify-center items-center md:hidden">
+  <div class="flex flex-col items-center gap-8 font-label-sm uppercase tracking-widest text-lg">
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="#" id="mobile-nav-link-home">Home</a>
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="#about" id="mobile-nav-link-about">About</a>
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="#archive" id="mobile-nav-link-archive">Archives</a>
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="#" id="mobile-nav-link-contact">Contact</a>
+    
+    <div class="w-16 h-[1px] bg-white/10 my-2"></div>
+    
+    <button id="btn-mobile-get-in-touch" class="px-6 py-2.5 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all tracking-widest text-sm uppercase">GET IN TOUCH</button>
+  </div>
+</div>
 <main class="relative z-10 pt-32 pb-40">
 <!-- Scroll Track Container -->
 <div id="scroll-track" class="relative w-full h-[300vh]">
@@ -843,7 +871,7 @@ animate();
       If you meant my contact information, go back to the Home page and click the Contact section instead.
     </p>
     
-    <button id="btn-back-home" class="px-8 py-3 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase active:scale-95">
+    <button id="btn-back-home" class="px-6 py-2.5 md:px-8 md:py-3 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase active:scale-95">
       Back Home
     </button>
   </div>
@@ -862,28 +890,28 @@ animate();
     <canvas id="contact-web-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
     
     <!-- WhatsApp -->
-    <a href="https://wa.me/?text=Hey%20Being_FRZI" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-whatsapp">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkz6BOQMBDG5m-ri42FYQIKki6AE4a2veVgi4ECdbcdGfwYXV0mIC8T7FgGrglQIIqdVtkp46hKDueJtpWo6IbCj-AyeS6TqmE5POU7FjEEEwprUV7QgaGKEtNcGO0OTtYJF3KPTBOuS8FxvaJfE709Qb5V7jRjGw3O7Ee0CLp7qA34EApboFYOPXpIf9p4Lv6fzZ3SQ0Pt_G0zHa0drY5v9AE452E0nm0BI4c4onEn8BrzaTdh6mdB-cA-CdKOvaL4KmEqP1zs_rM" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="WhatsApp">
+    <a href="https://wa.me/?text=Hey%20Being_FRZI" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-whatsapp">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkz6BOQMBDG5m-ri42FYQIKki6AE4a2veVgi4ECdbcdGfwYXV0mIC8T7FgGrglQIIqdVtkp46hKDueJtpWo6IbCj-AyeS6TqmE5POU7FjEEEwprUV7QgaGKEtNcGO0OTtYJF3KPTBOuS8FxvaJfE709Qb5V7jRjGw3O7Ee0CLp7qA34EApboFYOPXpIf9p4Lv6fzZ3SQ0Pt_G0zHa0drY5v9AE452E0nm0BI4c4onEn8BrzaTdh6mdB-cA-CdKOvaL4KmEqP1zs_rM" class="w-5 h-5 md:w-6 md:h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="WhatsApp">
     </a>
     <!-- Telegram -->
-    <a href="https://t.me/im_ankiit" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-telegram">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1imFJp0YbZ8EqOyJuCYdiJpgF4Lg8rlmfHlqNj3jYu1MqTLij4h3b15jbk0OrHDOPdx3DWnXm41RbjCzY3_L9wOYFL_emJFzZzr3n_zHLtHKuqrVH9I5OPZPp3xwMXZVtIdUn9vcawwQlk7q3UKLY5Lohe8wWejT8rqz32I04c5PR-0rlkfPDmidr0PxSUW4SvM57uTVREbOFS0HaZytKaXLZfgKJBmg2_E8egitcwzCJK9nNwHqO13Sl3VPiqU-o_y1qXZE2GOT6" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Telegram">
+    <a href="https://t.me/im_ankiit" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-telegram">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1imFJp0YbZ8EqOyJuCYdiJpgF4Lg8rlmfHlqNj3jYu1MqTLij4h3b15jbk0OrHDOPdx3DWnXm41RbjCzY3_L9wOYFL_emJFzZzr3n_zHLtHKuqrVH9I5OPZPp3xwMXZVtIdUn9vcawwQlk7q3UKLY5Lohe8wWejT8rqz32I04c5PR-0rlkfPDmidr0PxSUW4SvM57uTVREbOFS0HaZytKaXLZfgKJBmg2_E8egitcwzCJK9nNwHqO13Sl3VPiqU-o_y1qXZE2GOT6" class="w-5 h-5 md:w-6 md:h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Telegram">
     </a>
     <!-- Instagram -->
-    <a href="https://instagram.com/being_frzi" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-instagram">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsQ0HKGgcxpeOaFMT8KrdgWfygc8aZF9TpmSFC0DTwatdM4Qe_YlrClnTolsCyOT-WhCeZ2zkqrnaQ9OFFDrj62cZBMQ_b9AEeMd6LvzjeQDsvMAjRt9wrJgxxf3KJvDgBi3dMCd5EBMBveyEAaQr4eCw2gtbQPwycI0YCdkomXY7_5Tu0PTWS1jKo-FVqUuXGVoO1fry6N9lvyrJhpwpTwBx-HH9Og6wzalYjeprA_KUO3XIDvfJdjJreAWvtiyJykEVHNsIyKiG-" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Instagram">
+    <a href="https://instagram.com/being_frzi" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-instagram">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsQ0HKGgcxpeOaFMT8KrdgWfygc8aZF9TpmSFC0DTwatdM4Qe_YlrClnTolsCyOT-WhCeZ2zkqrnaQ9OFFDrj62cZBMQ_b9AEeMd6LvzjeQDsvMAjRt9wrJgxxf3KJvDgBi3dMCd5EBMBveyEAaQr4eCw2gtbQPwycI0YCdkomXY7_5Tu0PTWS1jKo-FVqUuXGVoO1fry6N9lvyrJhpwpTwBx-HH9Og6wzalYjeprA_KUO3XIDvfJdjJreAWvtiyJykEVHNsIyKiG font-medium" class="w-5 h-5 md:w-6 md:h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Instagram">
     </a>
     <!-- Snapchat -->
-    <a href="https://snapchat.com/add/being_frzi" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-snapchat">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlHOI-oQEBFXJVVdlF47SZjZOwYnJOa3A_D3HdpciIO2zR6VzOKRzTGhmNK3qePe8GLzHIW_fZddDrmANyLM75HWHZRmJrcpjZMRkV94CFnv8LBU1oPop9RIrFmvs62224zGULwL8VQ2gS31xoc1EvLTRQJqU18qKKTSWazgq9WXqTFo7BcW6mFYCIIVQ90EIgBrF-0yRyjG4KigXihX-n0UVyNdtLBo8dN1bxlBAMGkpseR7-F7LvNOUMLx0QkXbLIxVHb9SjHyX1" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Snapchat">
+    <a href="https://snapchat.com/add/being_frzi" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-snapchat">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlHOI-oQEBFXJVVdlF47SZjZOwYnJOa3A_D3HdpciIO2zR6VzOKRzTGhmNK3qePe8GLzHIW_fZddDrmANyLM75HWHZRmJrcpjZMRkV94CFnv8LBU1oPop9RIrFmvs62224zGULwL8VQ2gS31xoc1EvLTRQJqU18qKKTSWazgq9WXqTFo7BcW6mFYCIIVQ90EIgBrF-0yRyjG4KigXihX-n0UVyNdtLBo8dN1bxlBAMGkpseR7-F7LvNOUMLx0QkXbLIxVHb9SjHyX1" class="w-5 h-5 md:w-6 md:h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Snapchat">
     </a>
     <!-- Email -->
-    <a href="mailto:ankitgemini4@gmail.com" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-email">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA7yPVAsxEdydEThisOmrTQiBau2Kp6mh7n9VJvvv5a3kbw0DkqReZdWNu23s33uHLcuXiOrHiHwiFDGrqQL25o4EpcSw398JvGffcPBrdcwMUBc_5WDNxrzFOJJCmYz1_tm4FzXmTdv6_K9ttNmXB6uaVaG9mdgnX0CY0Idhm4K5gMCb-P-eBVmlU9wDAvUItkV5cs4JhOLdVVS8GHHRukqjB_BjVzfdC1WXgnfs-HGyqtwP4o-ZRaavlkh15nd0UbVma-R-sgnEY" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Mail">
+    <a href="mailto:ankitgemini4@gmail.com" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-email">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA7yPVAsxEdydEThisOmrTQiBau2Kp6mh7n9VJvvv5a3kbw0DkqReZdWNu23s33uHLcuXiOrHiHwiFDGrqQL25o4EpcSw398JvGffcPBrdcwMUBc_5WDNxrzFOJJCmYz1_tm4FzXmTdv6_K9ttNmXB6uaVaG9mdgnX0CY0Idhm4K5gMCb-P-eBVmlU9wDAvUItkV5cs4JhOLdVVS8GHHRukqjB_BjVzfdC1WXgnfs-HGyqtwP4o-ZRaavlkh15nd0UbVma-R-sgnEY" class="w-5 h-5 md:w-6 md:h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Mail">
     </a>
   </div>
   
-  <button id="btn-contact-back-home" class="px-8 py-3 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase active:scale-95 z-20">
+  <button id="btn-contact-back-home" class="px-6 py-2.5 md:px-8 md:py-3 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase active:scale-95 z-20">
     Back Home
   </button>
 </div>
@@ -1293,6 +1321,18 @@ animate();
   const navAboutLink = document.getElementById('nav-link-about');
   const navArchiveLink = document.getElementById('nav-link-archive');
   const navLogo = document.getElementById('nav-logo');
+
+  // Mobile menu elements
+  const mobileMenuToggle = document.getElementById('btn-mobile-menu-toggle');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const spideyIconMobile = document.getElementById('spidey-nav-icon-mobile');
+  const hamburgerIconPath = document.getElementById('hamburger-icon-path');
+  
+  const mobileNavHome = document.getElementById('mobile-nav-link-home');
+  const mobileNavAbout = document.getElementById('mobile-nav-link-about');
+  const mobileNavArchive = document.getElementById('mobile-nav-link-archive');
+  const mobileNavContact = document.getElementById('mobile-nav-link-contact');
+  const mobileGetInTouch = document.getElementById('btn-mobile-get-in-touch');
   
   // Active state styling array
   const navLinks = [
@@ -1338,6 +1378,77 @@ animate();
     closeRedirectPage();
     setActiveLink(navHomeLink);
   });
+
+  // --- Mobile Menu Handlers ---
+  let isMobileMenuOpen = false;
+  
+  function toggleMobileMenu() {
+    isMobileMenuOpen = !isMobileMenuOpen;
+    if (isMobileMenuOpen) {
+      mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      mobileMenuOverlay.classList.add('opacity-100', 'pointer-events-auto');
+      hamburgerIconPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+      document.body.classList.add('overflow-hidden');
+    } else {
+      mobileMenuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+      mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
+      hamburgerIconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      document.body.classList.remove('overflow-hidden');
+    }
+  }
+
+  function closeMobileMenu() {
+    isMobileMenuOpen = false;
+    if (mobileMenuOverlay) {
+      mobileMenuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+      mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
+    }
+    if (hamburgerIconPath) {
+      hamburgerIconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+    }
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+  if (spideyIconMobile) spideyIconMobile.addEventListener('click', () => {
+    closeMobileMenu();
+    openRedirectPage();
+  });
+
+  if (mobileNavHome) {
+    mobileNavHome.addEventListener('click', (e) => {
+      closeMobileMenu();
+      closeAllOverlays();
+      setActiveLink(navHomeLink);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  if (mobileNavAbout) {
+    mobileNavAbout.addEventListener('click', () => {
+      closeMobileMenu();
+      closeAllOverlays();
+      setActiveLink(navAboutLink);
+    });
+  }
+  if (mobileNavArchive) {
+    mobileNavArchive.addEventListener('click', () => {
+      closeMobileMenu();
+      closeAllOverlays();
+      setActiveLink(navArchiveLink);
+    });
+  }
+  if (mobileNavContact) {
+    mobileNavContact.addEventListener('click', (e) => {
+      closeMobileMenu();
+      openContactPage(e);
+    });
+  }
+  if (mobileGetInTouch) {
+    mobileGetInTouch.addEventListener('click', () => {
+      closeMobileMenu();
+      openRedirectPage();
+    });
+  }
 
   // --- Contact Page Overlay Handlers ---
   const canvas = document.getElementById('contact-web-canvas');
@@ -1521,7 +1632,7 @@ animate();
       ctx.quadraticCurveTo(midX, midY, node.x, node.y);
       ctx.stroke();
       
-      const elWidth = 56;
+      const elWidth = node.element.clientWidth || 56;
       node.element.style.left = `${node.x - elWidth / 2}px`;
       node.element.style.top = `${node.y}px`;
       node.element.style.transform = `rotate(${node.theta * 180 / Math.PI}deg) scale(${node.isHovered ? 1.2 : 1.0})`;
