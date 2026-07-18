@@ -469,12 +469,12 @@ void main() {
 </div>
 <!-- STITCH_SHADER_END:ANIMATION_3 -->
 <!-- Top Navigation -->
-<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base bg-surface/30 backdrop-blur-32 border-b border-white/10">
-<div class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tighter uppercase">BEING_FRZI</div>
+<nav class="fixed top-0 w-full z-[110] flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base bg-surface/30 backdrop-blur-32 border-b border-white/10">
+<div class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tighter uppercase cursor-pointer" id="nav-logo">BEING_FRZI</div>
 <div class="hidden md:flex gap-gutter items-center">
-<a class="text-primary border-b-2 border-primary pb-1 font-label-sm uppercase" href="#">Home</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#about">About</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#archive">Archives</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-sm uppercase" href="#" id="nav-link-home">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#about" id="nav-link-about">About</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#archive" id="nav-link-archive">Archives</a>
 <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#" id="nav-link-contact">Contact</a>
 </div>
 <div class="flex items-center gap-base">
@@ -1279,11 +1279,67 @@ animate();
 
 <script>
 (function() {
-  // --- Contact Page Overlay ---
+  // --- Navigation & Overlays Elements ---
+  const redirectPage = document.getElementById('contact-redirect-page');
+  const spideyIcon = document.getElementById('spidey-nav-icon');
+  const getInTouchBtn = document.getElementById('btn-get-in-touch');
+  const backHomeBtn = document.getElementById('btn-back-home');
+  
   const contactOverlay = document.getElementById('contact-page-overlay');
   const navContactLink = document.getElementById('nav-link-contact');
   const btnContactBackHome = document.getElementById('btn-contact-back-home');
   
+  const navHomeLink = document.getElementById('nav-link-home');
+  const navAboutLink = document.getElementById('nav-link-about');
+  const navArchiveLink = document.getElementById('nav-link-archive');
+  const navLogo = document.getElementById('nav-logo');
+  
+  // Active state styling array
+  const navLinks = [
+    { el: navHomeLink, id: 'home' },
+    { el: navAboutLink, id: 'about' },
+    { el: navArchiveLink, id: 'archive' },
+    { el: navContactLink, id: 'contact' }
+  ];
+  
+  function setActiveLink(activeEl) {
+    navLinks.forEach(item => {
+      if (item.el) {
+        if (item.el === activeEl) {
+          item.el.className = "text-primary border-b-2 border-primary pb-1 font-label-sm uppercase";
+        } else {
+          item.el.className = "text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase";
+        }
+      }
+    });
+  }
+  
+  // --- Get In Touch Redirect Screen Handlers ---
+  function openRedirectPage() {
+    closeContactPage();
+    if (redirectPage) {
+      redirectPage.classList.remove('opacity-0', 'pointer-events-none');
+      redirectPage.classList.add('opacity-100', 'pointer-events-auto');
+      document.body.classList.add('overflow-hidden');
+    }
+  }
+  
+  function closeRedirectPage() {
+    if (redirectPage) {
+      redirectPage.classList.remove('opacity-100', 'pointer-events-auto');
+      redirectPage.classList.add('opacity-0', 'pointer-events-none');
+      document.body.classList.remove('overflow-hidden');
+    }
+  }
+  
+  if (getInTouchBtn) getInTouchBtn.addEventListener('click', openRedirectPage);
+  if (spideyIcon) spideyIcon.addEventListener('click', openRedirectPage);
+  if (backHomeBtn) backHomeBtn.addEventListener('click', () => {
+    closeRedirectPage();
+    setActiveLink(navHomeLink);
+  });
+
+  // --- Contact Page Overlay Handlers ---
   const canvas = document.getElementById('contact-web-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -1322,22 +1378,18 @@ animate();
   }
   
   nodes.forEach((node) => {
-    // Mouse hover events
     node.element.addEventListener('mouseenter', () => {
       node.isHovered = true;
     });
     node.element.addEventListener('mouseleave', () => {
       node.isHovered = false;
     });
-    
-    // Mobile Touch events
     node.element.addEventListener('touchstart', () => {
       node.isHovered = true;
     }, { passive: true });
     node.element.addEventListener('touchend', () => {
       node.isHovered = false;
     }, { passive: true });
-    
     node.element.addEventListener('click', () => {
       node.clickPauseTime = 60;
       node.omega = 0;
@@ -1350,6 +1402,9 @@ animate();
   
   function openContactPage(e) {
     if (e) e.preventDefault();
+    closeRedirectPage();
+    setActiveLink(navContactLink);
+    
     if (contactOverlay) {
       contactOverlay.classList.remove('opacity-0', 'pointer-events-none');
       contactOverlay.classList.add('opacity-100', 'pointer-events-auto');
@@ -1381,7 +1436,43 @@ animate();
   }
   
   if (navContactLink) navContactLink.addEventListener('click', openContactPage);
-  if (btnContactBackHome) btnContactBackHome.addEventListener('click', closeContactPage);
+  if (btnContactBackHome) btnContactBackHome.addEventListener('click', () => {
+    closeContactPage();
+    setActiveLink(navHomeLink);
+  });
+  
+  // --- Navbar Interceptor listeners ---
+  function closeAllOverlays() {
+    closeContactPage();
+    closeRedirectPage();
+  }
+  
+  if (navHomeLink) {
+    navHomeLink.addEventListener('click', (e) => {
+      closeAllOverlays();
+      setActiveLink(navHomeLink);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  if (navLogo) {
+    navLogo.addEventListener('click', (e) => {
+      closeAllOverlays();
+      setActiveLink(navHomeLink);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  if (navAboutLink) {
+    navAboutLink.addEventListener('click', () => {
+      closeAllOverlays();
+      setActiveLink(navAboutLink);
+    });
+  }
+  if (navArchiveLink) {
+    navArchiveLink.addEventListener('click', () => {
+      closeAllOverlays();
+      setActiveLink(navArchiveLink);
+    });
+  }
   
   function updatePhysics() {
     if (!physicsActive) return;
@@ -1405,9 +1496,8 @@ animate();
         node.omega = 0;
         node.theta = 0;
       } else if (node.isHovered) {
-        // Stop swinging immediately on hover or touch so user can easily tap
         node.omega = 0;
-        node.theta += (0 - node.theta) * 0.18; // smooth ease to vertical rest
+        node.theta += (0 - node.theta) * 0.18;
       } else {
         const g = 0.35;
         const alpha = -g * Math.sin(node.theta) / (node.len || 1);
