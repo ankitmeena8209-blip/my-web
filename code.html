@@ -1,0 +1,1457 @@
+<!DOCTYPE html><html lang="en" class="dark scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Geist:wght@100..900&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#1b1b1c",
+                    "surface-container": "#202020",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "secondary-fixed": "#e2e2e2",
+                    "error-container": "#93000a",
+                    "on-secondary-container": "#b4b5b5",
+                    "error": "#ffb4ab",
+                    "tertiary": "#c8c6c5",
+                    "inverse-primary": "#c0000c",
+                    "secondary": "#c6c6c7",
+                    "surface-tint": "#ffb4aa",
+                    "surface-container-high": "#2a2a2a",
+                    "on-primary-container": "#5c0002",
+                    "surface-container-highest": "#353535",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-error": "#690005",
+                    "tertiary-container": "#929090",
+                    "on-tertiary": "#313030",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary-container": "#ff5446",
+                    "inverse-on-surface": "#303030",
+                    "primary": "#ffb4aa",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-primary-fixed-variant": "#930006",
+                    "surface-bright": "#393939",
+                    "surface": "#131313",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#474646",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#e5e2e1",
+                    "on-secondary": "#2f3131",
+                    "on-surface": "#e5e2e1",
+                    "primary-fixed-dim": "#ffb4aa",
+                    "on-primary": "#690003",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-variant": "#353535",
+                    "on-surface-variant": "#e9bcb6",
+                    "background": "#131313",
+                    "outline-variant": "#5f3f3a",
+                    "primary-fixed": "#ffdad5",
+                    "on-primary-fixed": "#410001",
+                    "secondary-container": "#454747",
+                    "surface-dim": "#131313",
+                    "on-background": "#e5e2e1",
+                    "outline": "#b08782",
+                    "on-tertiary-container": "#2a2a29"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "section-gap": "120px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Anton"],
+                    "body-lg": ["Geist", "sans-serif"],
+                    "label-sm": ["Space Grotesk"],
+                    "headline-lg-mobile": ["Anton"],
+                    "body-md": ["Geist", "sans-serif"],
+                    "display-lg": ["Anton"],
+                    "mono-quote": ["Space Grotesk"],
+                    "display-xl": ["Anton"]
+            },
+            "fontSize": {
+                    "headline-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                    "headline-lg-mobile": ["36px", { "lineHeight": "40px", "fontWeight": "400" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "display-lg": ["80px", { "lineHeight": "76px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                    "mono-quote": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                    "display-xl": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "400" }]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script><style>
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0px;
+  }
+  
+  .leader-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #ff5446;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff5446;
+  }
+  
+  .leader-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 84, 70, 0.5), rgba(255, 84, 70, 0));
+    transform-origin: left center;
+  }
+  
+  .primary-red-accent {
+    color: #ff5446;
+    text-shadow: 0 0 8px rgba(255, 84, 70, 0.5);
+  }
+
+  .ticker-container {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+  }
+  
+  .ticker-text {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: ticker 25s linear infinite;
+  }
+  
+  @keyframes ticker {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-20%, 0, 0);
+    }
+  }
+
+  .tilt-card {
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
+  }
+
+  /* About Page Specific Styles */
+  .about-leader-line {
+      position: relative;
+  }
+  .about-leader-line::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -32px;
+      width: 24px;
+      height: 1px;
+      background-color: #e5e2e1;
+      opacity: 0.5;
+  }
+  .about-leader-line::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -34px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #ff5446;
+      transform: translateY(-50%);
+  }
+
+  .glitch-hover {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+  }
+  .glitch-hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #ff5446;
+      transition: left 0.2s ease-in-out;
+      z-index: -1;
+  }
+  .glitch-hover:hover::before {
+      left: 0;
+  }
+  .glitch-hover:hover {
+      color: #131313;
+      border-color: #ff5446;
+  }
+
+  .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-play-state: paused;
+  }
+  .fade-in-up.visible {
+      animation-play-state: running;
+  }
+
+  @keyframes fadeInUp {
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  .glitch-text {
+      position: relative;
+  }
+  .glitch-text::before, .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #131313;
+  }
+  .glitch-text::before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      clip: rect(24px, 550px, 90px, 0);
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+  }
+  .glitch-text::after {
+      left: -2px;
+      text-shadow: -2px 0 blue;
+      clip: rect(85px, 550px, 140px, 0);
+      animation: glitch-anim 2.5s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim {
+      0% { clip: rect(78px, 9999px, 83px, 0); }
+      5% { clip: rect(32px, 9999px, 81px, 0); }
+      10% { clip: rect(69px, 9999px, 47px, 0); }
+      15% { clip: rect(100px, 9999px, 60px, 0); }
+      20% { clip: rect(51px, 9999px, 19px, 0); }
+      25% { clip: rect(87px, 9999px, 54px, 0); }
+      30% { clip: rect(16px, 9999px, 13px, 0); }
+      35% { clip: rect(61px, 9999px, 32px, 0); }
+      40% { clip: rect(54px, 9999px, 79px, 0); }
+      45% { clip: rect(38px, 9999px, 46px, 0); }
+      50% { clip: rect(96px, 9999px, 31px, 0); }
+      55% { clip: rect(44px, 9999px, 48px, 0); }
+      60% { clip: rect(2px, 9999px, 90px, 0); }
+      65% { clip: rect(93px, 9999px, 53px, 0); }
+      70% { clip: rect(55px, 9999px, 94px, 0); }
+      75% { clip: rect(74px, 9999px, 72px, 0); }
+      80% { clip: rect(82px, 9999px, 20px, 0); }
+      85% { clip: rect(21px, 9999px, 15px, 0); }
+      90% { clip: rect(68px, 9999px, 70px, 0); }
+      95% { clip: rect(25px, 9999px, 88px, 0); }
+      100% { clip: rect(11px, 9999px, 80px, 0); }
+  }
+
+  /* Archive Page Specific Styles */
+  .archive-leader-line {
+      position: absolute;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      width: 40px;
+      left: -40px;
+      top: 50%;
+  }
+  .archive-leader-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: white;
+      left: -42px;
+      top: calc(50% - 1.5px);
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+
+  #spider-cursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  /* Archive Page Specific Styles */
+  .archive-leader-line {
+      position: absolute;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      width: 40px;
+      left: -40px;
+      top: 50%;
+  }
+  .archive-leader-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: white;
+      left: -42px;
+      top: calc(50% - 1.5px);
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+
+  #spider-cursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .web-bg {
+    background-color: #131313;
+    background-image: radial-gradient(circle at center, transparent 0%, #131313 75%),
+                      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50,50 L100,50 M50,50 L50,100 M50,50 L0,50 M50,50 L50,0 M50,50 L85,85 M50,50 L15,85 M50,50 L15,15 M50,50 L85,15' stroke='rgba(255,255,255,0.015)' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='15' stroke='rgba(255,255,255,0.015)' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='rgba(255,255,255,0.015)' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='45' stroke='rgba(255,255,255,0.015)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .social-rope-item {
+    position: absolute;
+    transform-origin: top center;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.15s ease-out;
+  }
+  
+  .social-rope-item:hover {
+    border-color: rgba(255, 84, 70, 0.8);
+    box-shadow: 0 0 25px rgba(255, 84, 70, 0.6);
+  }
+</style></head><body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div id="spider-cursor">🕷️</div>
+<!-- Ambient Background Shader -->
+<!-- STITCH_SHADER_START:ANIMATION_3 class="fixed inset-0 w-full h-full opacity-40 z-0 pointer-events-none" -->
+<div class="fixed inset-0 w-full h-full opacity-40 z-0 pointer-events-none" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+varying vec2 v_texCoord;
+
+float random(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Create a dark, moody background with subtle grain
+    vec3 color1 = vec3(0.05, 0.05, 0.07); // Deep near-black
+    vec3 color2 = vec3(0.12, 0.05, 0.05); // Subtle red hint
+    
+    float noise = random(uv + u_time * 0.01);
+    
+    // Slow drifting gradient
+    float t = u_time * 0.5;
+    float pct = sin(uv.x * 3.0 + t) * 0.5 + 0.5;
+    pct *= cos(uv.y * 2.0 - t * 0.5) * 0.5 + 0.5;
+    
+    vec3 color = mix(color1, color2, pct);
+    
+    // Add sharp, fast scanline/glitch lines matching the edgy vibe
+    float line = step(0.995, fract(uv.y * 50.0 - u_time * 2.0));
+    color += line * vec3(0.1, 0.0, 0.0);
+    
+    // Grain
+    color += (noise - 0.5) * 0.04;
+    
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_3 -->
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base bg-surface/30 backdrop-blur-32 border-b border-white/10">
+<div class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tighter uppercase">BEING_FRZI</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-sm uppercase" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#about">About</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#archive">Archives</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm uppercase" href="#" id="nav-link-contact">Contact</a>
+</div>
+<div class="flex items-center gap-base">
+<button id="btn-get-in-touch" class="px-6 py-2 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase">GET IN TOUCH</button>
+<!-- Minimal Spider-Man Mask Icon -->
+<svg class="w-8 h-8 text-surface-tint hover:text-primary hover:scale-110 transition-all cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" id="spidey-nav-icon">
+  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 7.523 2 12s4.477 10 10 10z" stroke="currentColor" stroke-opacity="0.3" />
+  <path d="M6.5 10.5c1-1 3.5-1 4.5 1.5.5 1.25.5 2.25-.5 2.75s-2.5-.75-4-4.25z" fill="currentColor" />
+  <path d="M17.5 10.5c-1-1-3.5-1-4.5 1.5-.5 1.25-.5 2.25.5 2.75s2.5-.75 4-4.25z" fill="currentColor" />
+</svg>
+</div>
+</nav>
+<main class="relative z-10 pt-32 pb-40">
+<!-- Scroll Track Container -->
+<div id="scroll-track" class="relative w-full h-[300vh]">
+  <!-- Sticky Container -->
+  <div class="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative w-full container mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Floating Annotations Left -->
+<div id="annotations-left" class="hidden lg:block absolute left-32 top-64 z-20 space-y-32 transition-all duration-300 opacity-0 -translate-x-5">
+<div class="relative group">
+<div class="glass-panel p-4 tilt-card max-w-[200px]">
+<p class="font-label-sm text-on-surface-variant leading-tight">BEING_FRZI<br>HERO? NAH<br>LEGEND? MAYBE 🤘</p>
+</div>
+<div class="leader-line w-24 top-1/2 left-full"></div>
+<div class="leader-dot top-1/2 left-[calc(100%+96px)] -translate-y-1/2"></div>
+</div>
+<div class="relative group">
+<div class="glass-panel p-4 tilt-card max-w-[200px]">
+<p class="font-label-sm text-on-surface-variant leading-tight">NOT ALL HEROES<br>WEAR CAPES,<br>SOME WEAR <span class="primary-red-accent">SUNGLASSES</span> 😎</p>
+</div>
+<div class="leader-line w-32 top-1/2 left-full"></div>
+<div class="leader-dot top-1/2 left-[calc(100%+128px)] -translate-y-1/2"></div>
+</div>
+</div>
+<!-- Central Content Column -->
+<div class="md:col-span-12 lg:col-span-10 lg:col-start-2 relative flex flex-col items-center">
+<!-- 3D Interactive Layer -->
+<div class="absolute inset-0 z-0 pointer-events-none mix-blend-screen opacity-70">
+<!-- STITCH_THREEJS_START:ANIMATION_4 class="w-full h-full" -->
+<div class="w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_4" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_4');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const scene = new THREE.Scene();
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+const pointLight = new THREE.PointLight(0xff1f1f, 2, 10);
+pointLight.position.set(2, 2, 2);
+scene.add(pointLight);
+
+// Floating Geometric Elements (Abstract 3D 'Social Nodes')
+const geometry = new THREE.IcosahedronGeometry(1, 0);
+const material = new THREE.MeshPhongMaterial({
+    color: 0xff1f1f,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.3
+});
+
+const nodes = [];
+for(let i = 0; i < 5; i++) {
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 6,
+        (Math.random() - 0.5) * 5
+    );
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+    mesh.scale.setScalar(Math.random() * 0.5 + 0.2);
+    scene.add(mesh);
+    nodes.push({
+        mesh,
+        speed: Math.random() * 0.01 + 0.005,
+        rotSpeed: Math.random() * 0.02
+    });
+}
+
+camera.position.z = 5;
+
+// Mouse interaction
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+function animate() {
+    requestAnimationFrame(animate);
+    
+    nodes.forEach(node => {
+        node.mesh.rotation.x += node.rotSpeed;
+        node.mesh.rotation.y += node.rotSpeed;
+        node.mesh.position.y += Math.sin(Date.now() * 0.001 + node.mesh.position.x) * 0.002;
+    });
+    
+    camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+    camera.position.y += (mouseY * 2 - camera.position.y) * 0.05;
+    camera.lookAt(scene.position);
+    
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_4 -->
+</div>
+<!-- Hero Image & Title Overlay -->
+<div class="relative w-full max-w-5xl group">
+<div class="absolute -top-12 left-0 w-full flex justify-between items-end px-4 z-20">
+<h1 id="title-being" class="font-display-xl text-[80px] md:text-[180px] leading-[0.8] opacity-10 select-none uppercase tracking-tighter transition-all duration-300">BEING</h1>
+<h1 id="title-frzi" class="font-display-xl text-[80px] md:text-[180px] leading-[0.8] opacity-10 select-none uppercase tracking-tighter transition-all duration-300">FRZI</h1>
+</div>
+<!-- Glass Frame for Hero -->
+<div id="canvas-container" class="relative z-10 glass-panel p-2 md:p-6 rounded-none border-white/5 overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.01] w-full aspect-[16/9]">
+  <canvas id="hero-scroll-canvas" class="w-full h-full object-cover opacity-0 transition-opacity duration-500"></canvas>
+  <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none"></div>
+  
+  <!-- Digital Cyperpunk Loading Overlay -->
+  <div id="loading-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-background/95 z-30 transition-opacity duration-500 font-label-sm">
+    <div class="flex flex-col items-center gap-4 max-w-[280px] w-full px-4">
+      <div class="w-full flex justify-between text-primary tracking-widest text-[10px]">
+        <span>SYSTEM_LOAD: ANIMATION_SEQ</span>
+        <span id="loading-percent">0%</span>
+      </div>
+      <!-- Spider Web Loader Canvas -->
+      <canvas id="web-loader-canvas" class="w-32 h-32"></canvas>
+      <div class="text-[9px] text-on-surface-variant/60 tracking-wider uppercase text-center mt-1">Caching high-fidelity frames for smooth playback</div>
+    </div>
+  </div>
+</div>
+<!-- Subheadlines -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 w-full px-margin-mobile flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-gutter">
+<h2 id="subheadline-hero" class="font-display-lg text-headline-lg-mobile md:text-headline-lg uppercase tracking-tighter mix-blend-difference transition-all duration-300">HERO? NAH</h2>
+<h2 id="subheadline-legend" class="font-display-lg text-headline-lg-mobile md:text-headline-lg uppercase tracking-tighter mix-blend-difference transition-all duration-300">LEGEND? MAYBE</h2>
+</div>
+</div>
+</div>
+<!-- Floating Annotations Right -->
+<div id="annotations-right" class="hidden lg:block absolute right-32 top-64 z-20 space-y-32 transition-all duration-300 opacity-0 translate-x-5">
+<div class="relative group">
+<div class="leader-dot top-1/2 right-[calc(100%+96px)] -translate-y-1/2"></div>
+<div class="leader-line w-24 top-1/2 right-full"></div>
+<div class="glass-panel p-4 tilt-card max-w-[200px]">
+<p class="font-label-sm text-on-surface-variant leading-tight">SPIDER-MAN SAVES THE CITY, I SAVE MY WIFI<br class="">... PRIORITIES BRO! 🤷‍♂️📡</p>
+</div>
+</div>
+<div class="relative group">
+<div class="leader-dot top-1/2 right-[calc(100%+128px)] -translate-y-1/2"></div>
+<div class="leader-line w-32 top-1/2 right-full"></div>
+<div class="glass-panel p-4 tilt-card max-w-[200px]">
+<p class="font-label-sm text-on-surface-variant leading-tight">FIGHTING CRIME?<br>NAH BRO,<br><span class="primary-red-accent">FIGHTING BOREDOM!</span> 😂</p>
+</div>
+</div>
+</div>
+</section>
+  </div>
+</div>
+
+<!-- About Section -->
+<section id="about" class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto relative z-20 scroll-mt-24 parallax-container">
+  <!-- Hero Image Overlay (Faded) -->
+  <div class="absolute right-0 top-16 w-3/4 h-[90vh] opacity-20 pointer-events-none mix-blend-luminosity hidden md:block">
+    <img class="w-full h-full object-contain grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9nnU9JkxENwLR2rpDsIObz30ACMlEeyF92IrzsmJTdwBoS4HCyOSRet6c_B1kdHe96W5hxiuF7GoyZmqqP4JMIO5StbdWp85fVm5pJEMPpE_PgNPn5sWRAfNnjP2ZO6PAXHyoIuCmv574lTxX4nSJ4kT_pPVeDjZa0qFAV-Bcqg4fmm0Za6ycucBproNh8RVxoTb7uQvQf6xxuThOwMb4zf9wsLhpexEAg3SG0nfWc2i5R1SIUz0OAv8Y7IIhaDKCss0cghuXVXIs"/>
+  </div>
+  
+  <!-- Header Section -->
+  <header class="mb-section-gap fade-in-up" style="animation-delay: 0.1s;">
+    <h1 class="font-display-xl text-display-xl text-on-surface mb-6 relative inline-block glitch-text" data-text="ABOUT ME">
+      ABOUT ME
+      <span class="absolute -bottom-4 left-0 w-1/3 h-1 bg-primary"></span>
+    </h1>
+    <p class="font-mono-quote text-mono-quote text-primary max-w-md about-leader-line ml-12 mt-8">
+      INITIATING_SEQUENCE // IDENTITY_MATRIX_LOADED
+    </p>
+  </header>
+  
+  <!-- Story Sections -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 relative z-10">
+    <!-- Section 1 -->
+    <div class="md:col-span-8 md:col-start-1 glass-panel p-8 md:p-12 rounded-xl mb-12 fade-in-up parallax-element" data-speed="0.02" style="animation-delay: 0.2s;">
+      <p class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-6">01 // The Origin</p>
+      <div class="font-mono-quote text-body-lg text-on-surface space-y-6">
+        <p>
+          Hey! I'm Ankit, but the internet knows me as <span class="text-white font-bold bg-surface-container-high px-2 py-1 rounded glitch-text" data-text="BEING_FRZI">BEING_FRZI</span>. No, I'm not Spider-Man, but I do save the city from boring content. Spider-Man saves the city, I save my WiFi... priorities bro!
+        </p>
+      </div>
+    </div>
+    
+    <!-- Section 2 -->
+    <div class="md:col-span-7 md:col-start-5 glass-panel p-8 md:p-12 rounded-xl mb-12 fade-in-up border-l-4 border-l-primary parallax-element" data-speed="0.03" style="animation-delay: 0.3s;">
+      <p class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-6">02 // The Mission</p>
+      <div class="font-mono-quote text-body-lg text-on-surface space-y-6">
+        <h3 class="font-headline-lg-mobile text-primary uppercase">When I'm not creating content:</h3>
+        <ul class="list-disc pl-6 space-y-4">
+          <li>Fighting crime? Nah bro, fighting boredom!</li>
+          <li>Chilling in sunglasses, because not all heroes wear capes, some wear sunglasses.</li>
+          <li>Waiting for my next drop... dropping soon when I'm free!</li>
+        </ul>
+        <p class="font-mono-quote text-mono-quote text-on-surface-variant p-4 bg-surface-container-lowest rounded-DEFAULT border border-white/5 mt-6">
+          &gt; SYSTEM_LOG: PRIORITIES_SET_TO_WIFI
+        </p>
+      </div>
+    </div>
+    
+    <!-- Section 3 -->
+    <div class="md:col-span-12 glass-panel p-8 md:p-16 rounded-xl mt-12 bg-gradient-to-br from-surface-container-low to-background border-outline-variant fade-in-up parallax-element" data-speed="0.015" style="animation-delay: 0.4s;">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="font-display-lg text-display-lg text-on-surface mb-8 leading-tight glitch-text" data-text="Hero? Nah.">
+          Hero? Nah.<br/><span class="text-primary/80">Legend? Maybe.</span>
+        </p>
+        <div class="w-16 h-1 bg-primary mx-auto mb-12"></div>
+        <p class="font-headline-lg text-headline-lg text-[#ff1f1f] tracking-widest uppercase">
+          STAY RAW.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Archive Section -->
+<section id="archive" class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop relative z-20 scroll-mt-24 parallax-container">
+  <header class="mb-section-gap pt-margin-desktop fade-in-up" style="animation-delay: 0.1s;">
+    <h1 class="font-display-xl text-display-xl text-on-surface uppercase opacity-90 tracking-tighter mix-blend-screen">ARCHIVE</h1>
+    <div class="h-[2px] w-full bg-gradient-to-r from-primary/50 to-transparent mt-4"></div>
+  </header>
+  
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter md:gap-8">
+    <div class="md:col-span-8 md:col-start-3 space-y-gutter md:space-y-8">
+      <div class="glass-panel p-container-padding fade-in-up delay-100 group hover:-translate-y-1 transition-transform duration-300 relative">
+        <div class="hidden md:block archive-leader-line group-hover:bg-primary transition-colors"></div>
+        <div class="hidden md:block archive-leader-dot group-hover:bg-primary transition-colors"></div>
+        <p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+          Congratulations. You've entered the place where my storage is full, but I still refuse to delete anything.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter md:gap-8">
+        <div class="glass-panel p-container-padding fade-in-up delay-200 group hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+          <div class="absolute top-0 right-0 p-2 opacity-20 pointer-events-none">
+            <svg fill="none" height="60" stroke="currentColor" stroke-width="1" viewBox="0 0 100 100" width="60">
+              <path d="M0,0 L100,100 M50,0 L50,100 M0,50 L100,50 M0,100 L100,0 M25,25 Q50,0 75,25 Q100,50 75,75 Q50,100 25,75 Q0,50 25,25 Z"></path>
+            </svg>
+          </div>
+          <h3 class="font-label-sm text-label-sm uppercase text-primary mb-4">This archive contains:</h3>
+          <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-1">⚽</span>
+              <span>Football posts because one match somehow affects my entire mood.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-1">🏏</span>
+              <span>Cricket posts because "bas ek over aur..." is the biggest lie I've ever told myself.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-1">🎵</span>
+              <span>Music because silence is overrated and every situation deserves a soundtrack.</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="glass-panel p-container-padding fade-in-up delay-300 group hover:-translate-y-1 transition-transform duration-300">
+          <h3 class="font-label-sm text-label-sm uppercase text-primary mb-4">You'll also find:</h3>
+          <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+            <li class="flex items-center gap-2">
+              <div class="w-1.5 h-1.5 bg-primary/60 rounded-full"></div>
+              Random edits I spent 6 hours making.
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="w-1.5 h-1.5 bg-primary/60 rounded-full"></div>
+              Memes that made me laugh more than they should've.
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="w-1.5 h-1.5 bg-primary/60 rounded-full"></div>
+              Posts I almost deleted... but my ego said, "Nah, it's art."
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="glass-panel p-container-padding fade-in-up delay-400 group relative">
+        <div class="hidden md:block archive-leader-line group-hover:bg-primary transition-colors"></div>
+        <div class="hidden md:block archive-leader-dot group-hover:bg-primary transition-colors"></div>
+        <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-6 uppercase tracking-tight">FAQ</h2>
+        <div class="space-y-6">
+          <div class="border-l-2 border-primary/30 pl-4 hover:border-primary transition-colors">
+            <p class="font-label-sm text-label-sm text-primary mb-1 uppercase">Q: Why are there so many football posts?</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">A: Because therapy has monthly charges.</p>
+          </div>
+          <div class="border-l-2 border-primary/30 pl-4 hover:border-primary transition-colors">
+            <p class="font-label-sm text-label-sm text-primary mb-1 uppercase">Q: Football or Cricket?</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">A: Depends who's playing.</p>
+          </div>
+          <div class="border-l-2 border-primary/30 pl-4 hover:border-primary transition-colors">
+            <p class="font-label-sm text-label-sm text-primary mb-1 uppercase">Q: What's always playing in your headphones?</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">A: Songs louder than my life decisions.</p>
+          </div>
+          <div class="border-l-2 border-primary/30 pl-4 hover:border-primary transition-colors">
+            <p class="font-label-sm text-label-sm text-primary mb-1 uppercase">Q: Is everything here important?</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">A: Definitely not. But it was at 2:17 AM.</p>
+          </div>
+          <div class="border-l-2 border-primary/30 pl-4 hover:border-primary transition-colors">
+            <p class="font-label-sm text-label-sm text-primary mb-1 uppercase">Q: Why didn't you delete the old posts?</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">A: Character development.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="glass-panel p-container-padding border-l-4 !border-l-error fade-in-up delay-400 bg-error/5 group">
+        <h3 class="font-label-sm text-label-sm uppercase text-error flex items-center gap-2 mb-4 tracking-widest">
+          <span class="material-symbols-outlined text-[16px]">warning</span> WARNING
+        </h3>
+        <p class="font-body-md text-body-md text-on-surface mb-2">Scrolling this archive may cause:</p>
+        <ul class="list-disc list-inside font-body-md text-body-md text-on-surface-variant space-y-1 mb-4 marker:text-error/50">
+          <li>Football debates.</li>
+          <li>Cricket nostalgia.</li>
+          <li>Random song recommendations.</li>
+          <li>"Just one more post..." (30 minutes later...)</li>
+        </ul>
+        <p class="font-mono-quote text-mono-quote text-on-surface uppercase mt-4">
+          Thanks for visiting.<br/>
+          Now scroll responsibly... or don't. 😎
+        </p>
+      </div>
+    </div>
+</section>
+
+<!-- Full screen redirect page for Contact -->
+<div id="contact-redirect-page" class="fixed inset-0 z-[100] bg-[#131313] web-bg opacity-0 pointer-events-none transition-all duration-500 flex flex-col items-center justify-center">
+  <div class="max-w-2xl w-full px-8 text-center flex flex-col items-center">
+    <h1 class="font-display-xl text-[40px] md:text-[60px] text-on-surface mb-6 leading-tight uppercase tracking-tighter">
+      I'm Straight. Don't Get in Touch Too Much, Bruh. 😂
+    </h1>
+    <p class="font-mono-quote text-body-lg text-primary mb-8 tracking-wide">
+      How much 'touch' are we talking about? I'm not that kind of guy, bro. 😭
+    </p>
+    
+    <!-- Divider -->
+    <div class="w-32 h-[1px] bg-white/10 mb-8"></div>
+    
+    <p class="font-body-md text-on-surface-variant max-w-md mb-12">
+      If you meant my contact information, go back to the Home page and click the Contact section instead.
+    </p>
+    
+    <button id="btn-back-home" class="px-8 py-3 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase active:scale-95">
+      Back Home
+    </button>
+  </div>
+</div>
+
+<!-- Contact Page Overlay (Separate Page) -->
+<div id="contact-page-overlay" class="fixed inset-0 z-[100] bg-[#131313] web-bg opacity-0 pointer-events-none transition-all duration-500 flex flex-col items-center justify-center overflow-hidden">
+  <div class="relative z-10 text-center mb-12">
+    <h1 class="font-display-xl text-[48px] md:text-[80px] text-on-surface uppercase opacity-90 tracking-tighter">GET IN TOUCH</h1>
+    <div class="h-[2px] w-32 bg-primary mx-auto mt-4 shadow-[0_0_8px_#ff5446]"></div>
+  </div>
+  
+  <!-- Social Icons container -->
+  <div class="relative w-full max-w-3xl h-[300px] mx-auto mb-12" id="social-rope-container">
+    <!-- Canvas for drawing the web strands -->
+    <canvas id="contact-web-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+    
+    <!-- WhatsApp -->
+    <a href="https://wa.me/?text=Hey%20Being_FRZI" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-whatsapp">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkz6BOQMBDG5m-ri42FYQIKki6AE4a2veVgi4ECdbcdGfwYXV0mIC8T7FgGrglQIIqdVtkp46hKDueJtpWo6IbCj-AyeS6TqmE5POU7FjEEEwprUV7QgaGKEtNcGO0OTtYJF3KPTBOuS8FxvaJfE709Qb5V7jRjGw3O7Ee0CLp7qA34EApboFYOPXpIf9p4Lv6fzZ3SQ0Pt_G0zHa0drY5v9AE452E0nm0BI4c4onEn8BrzaTdh6mdB-cA-CdKOvaL4KmEqP1zs_rM" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="WhatsApp">
+    </a>
+    <!-- Telegram -->
+    <a href="https://t.me/im_ankiit" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-telegram">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1imFJp0YbZ8EqOyJuCYdiJpgF4Lg8rlmfHlqNj3jYu1MqTLij4h3b15jbk0OrHDOPdx3DWnXm41RbjCzY3_L9wOYFL_emJFzZzr3n_zHLtHKuqrVH9I5OPZPp3xwMXZVtIdUn9vcawwQlk7q3UKLY5Lohe8wWejT8rqz32I04c5PR-0rlkfPDmidr0PxSUW4SvM57uTVREbOFS0HaZytKaXLZfgKJBmg2_E8egitcwzCJK9nNwHqO13Sl3VPiqU-o_y1qXZE2GOT6" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Telegram">
+    </a>
+    <!-- Instagram -->
+    <a href="https://instagram.com/being_frzi" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-instagram">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsQ0HKGgcxpeOaFMT8KrdgWfygc8aZF9TpmSFC0DTwatdM4Qe_YlrClnTolsCyOT-WhCeZ2zkqrnaQ9OFFDrj62cZBMQ_b9AEeMd6LvzjeQDsvMAjRt9wrJgxxf3KJvDgBi3dMCd5EBMBveyEAaQr4eCw2gtbQPwycI0YCdkomXY7_5Tu0PTWS1jKo-FVqUuXGVoO1fry6N9lvyrJhpwpTwBx-HH9Og6wzalYjeprA_KUO3XIDvfJdjJreAWvtiyJykEVHNsIyKiG-" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Instagram">
+    </a>
+    <!-- Snapchat -->
+    <a href="https://snapchat.com/add/being_frzi" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-snapchat">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlHOI-oQEBFXJVVdlF47SZjZOwYnJOa3A_D3HdpciIO2zR6VzOKRzTGhmNK3qePe8GLzHIW_fZddDrmANyLM75HWHZRmJrcpjZMRkV94CFnv8LBU1oPop9RIrFmvs62224zGULwL8VQ2gS31xoc1EvLTRQJqU18qKKTSWazgq9WXqTFo7BcW6mFYCIIVQ90EIgBrF-0yRyjG4KigXihX-n0UVyNdtLBo8dN1bxlBAMGkpseR7-F7LvNOUMLx0QkXbLIxVHb9SjHyX1" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Snapchat">
+    </a>
+    <!-- Email -->
+    <a href="mailto:ankitgemini4@gmail.com" target="_blank" rel="noopener noreferrer" class="social-rope-item group absolute z-10 flex items-center justify-center w-14 h-14 bg-surface-container-high border border-white/10 hover:border-primary/50 transition-all rounded-full shadow-lg" id="rope-icon-email">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA7yPVAsxEdydEThisOmrTQiBau2Kp6mh7n9VJvvv5a3kbw0DkqReZdWNu23s33uHLcuXiOrHiHwiFDGrqQL25o4EpcSw398JvGffcPBrdcwMUBc_5WDNxrzFOJJCmYz1_tm4FzXmTdv6_K9ttNmXB6uaVaG9mdgnX0CY0Idhm4K5gMCb-P-eBVmlU9wDAvUItkV5cs4JhOLdVVS8GHHRukqjB_BjVzfdC1WXgnfs-HGyqtwP4o-ZRaavlkh15nd0UbVma-R-sgnEY" class="w-6 h-6 object-contain invert group-hover:scale-110 transition-transform duration-300" alt="Mail">
+    </a>
+  </div>
+  
+  <button id="btn-contact-back-home" class="px-8 py-3 border border-white/20 hover:bg-primary-container hover:text-on-primary-container hover:border-transparent transition-all font-label-sm tracking-widest uppercase active:scale-95 z-20">
+    Back Home
+  </button>
+</div>
+</main>
+<!-- Footer Ticker -->
+<footer class="fixed bottom-0 w-full bg-surface-container-lowest border-t border-white/5 py-3 z-40 overflow-hidden">
+<div class="ticker-container flex">
+<div class="ticker-text flex items-center gap-12 text-primary uppercase font-mono-quote text-mono-quote tracking-[0.3em]">
+<span class="">© 2024 BEING_FRZI. DROPPING SOON WHEN I'M FREE! 🤪</span>
+<span class="">© 2024 BEING_FRZI. DROPPING SOON WHEN I'M FREE! 🤪</span>
+<span class="">© 2024 BEING_FRZI. DROPPING SOON WHEN I'M FREE! 🤪</span>
+<span class="">© 2024 BEING_FRZI. DROPPING SOON WHEN I'M FREE! 🤪</span>
+<span class="">© 2024 BEING_FRZI. DROPPING SOON WHEN I'M FREE! 🤪</span>
+</div>
+</div>
+</footer>
+<script class="">
+        // Interactivity for the glass panels
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const percentX = (x - centerX) / centerX;
+                const percentY = (y - centerY) / centerY;
+                
+                const maxRotation = 15; // max 15 degrees tilt
+                const rotateX = -percentY * maxRotation;
+                const rotateY = percentX * maxRotation;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+</script>
+<script>
+(function() {
+  const canvas = document.getElementById('hero-scroll-canvas');
+  const context = canvas.getContext('2d');
+  const scrollTrack = document.getElementById('scroll-track');
+  const loadingOverlay = document.getElementById('loading-overlay');
+  const loadingPercent = document.getElementById('loading-percent');
+  const webCanvas = document.getElementById('web-loader-canvas');
+  
+  // Elements to animate on scroll
+  const annotLeft = document.getElementById('annotations-left');
+  const annotRight = document.getElementById('annotations-right');
+  const titleBeing = document.getElementById('title-being');
+  const titleFrzi = document.getElementById('title-frzi');
+  const subHero = document.getElementById('subheadline-hero');
+  const subLegend = document.getElementById('subheadline-legend');
+  
+  const frameCount = 255;
+  const currentFrame = index => `frames_optimized/frame-${String(index).padStart(3, '0')}.jpg`;
+  
+  const images = [];
+  let loadedCount = 0;
+  
+  // Set canvas size matching the optimized image dimensions
+  canvas.width = 960;
+  canvas.height = 540;
+  
+  // Set up the web loader canvas backing resolution
+  if (webCanvas) {
+    webCanvas.width = 256;
+    webCanvas.height = 256;
+  }
+  
+  let currentWebProgress = 0;
+  let targetWebProgress = 0;
+  let loaderActive = true;
+  
+  function drawWeb(progress) {
+    if (!webCanvas) return;
+    const ctx = webCanvas.getContext('2d');
+    const cx = webCanvas.width / 2;
+    const cy = webCanvas.height / 2;
+    const R = Math.min(cx, cy) * 0.85;
+    const numSpokes = 8;
+    const numRings = 6;
+    
+    ctx.clearRect(0, 0, webCanvas.width, webCanvas.height);
+    
+    // Draw background web outline (faint white/grey)
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    
+    // Spokes background
+    for (let k = 0; k < numSpokes; k++) {
+      const angle = k * (2 * Math.PI / numSpokes);
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + R * Math.cos(angle), cy + R * Math.sin(angle));
+      ctx.stroke();
+    }
+    
+    // Rings background
+    for (let j = 1; j <= numRings; j++) {
+      const r = R * (j / numRings);
+      ctx.beginPath();
+      for (let k = 0; k <= numSpokes; k++) {
+        const angle = k * (2 * Math.PI / numSpokes);
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+        if (k === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    
+    let spiderX = cx;
+    let spiderY = cy;
+    
+    // Web completion drawing (neon Signal Red)
+    ctx.lineWidth = 1.5;
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = '#ff5446';
+    ctx.strokeStyle = '#ff5446';
+    
+    if (progress < 0.25) {
+      // Phase 1: Spokes grow (0% to 25% progress)
+      const spokeProgress = progress / 0.25;
+      const activeSpoke = spokeProgress * numSpokes;
+      
+      for (let k = 0; k < numSpokes; k++) {
+        const angle = k * (2 * Math.PI / numSpokes);
+        if (k < Math.floor(activeSpoke)) {
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + R * Math.cos(angle), cy + R * Math.sin(angle));
+          ctx.stroke();
+        } else if (k === Math.floor(activeSpoke)) {
+          const frac = activeSpoke % 1;
+          const len = R * frac;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + len * Math.cos(angle), cy + len * Math.sin(angle));
+          ctx.stroke();
+          
+          // Spider sits at the tip of the growing spoke
+          spiderX = cx + len * Math.cos(angle);
+          spiderY = cy + len * Math.sin(angle);
+        }
+      }
+    } else {
+      // Phase 1 is fully complete, draw all spokes in red
+      for (let k = 0; k < numSpokes; k++) {
+        const angle = k * (2 * Math.PI / numSpokes);
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + R * Math.cos(angle), cy + R * Math.sin(angle));
+        ctx.stroke();
+      }
+      
+      // Phase 2: Concentric rings weaving (25% to 100% progress)
+      const spiralProgress = (progress - 0.25) / 0.75;
+      const totalSegments = numRings * numSpokes;
+      const completedSegments = spiralProgress * totalSegments;
+      
+      for (let idx = 0; idx < totalSegments; idx++) {
+        const j = Math.floor(idx / numSpokes) + 1; // ring index (1 to 6)
+        const i = idx % numSpokes;                 // segment start spoke index (0 to 7)
+        const r = R * (j / numRings);
+        const ang1 = i * (2 * Math.PI / numSpokes);
+        const ang2 = (i + 1) * (2 * Math.PI / numSpokes);
+        
+        const x1 = cx + r * Math.cos(ang1);
+        const y1 = cy + r * Math.sin(ang1);
+        const x2 = cx + r * Math.cos(ang2);
+        const y2 = cy + r * Math.sin(ang2);
+        
+        if (idx < Math.floor(completedSegments)) {
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        } else if (idx === Math.floor(completedSegments)) {
+          const frac = completedSegments % 1;
+          spiderX = x1 + (x2 - x1) * frac;
+          spiderY = y1 + (y2 - y1) * frac;
+          
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(spiderX, spiderY);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    // Draw Spider (pulsing neon red dot)
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = '#ff5446';
+    ctx.beginPath();
+    const pulseRadius = 5 + Math.sin(Date.now() / 80) * 1.5;
+    ctx.arc(spiderX, spiderY, pulseRadius, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    ctx.shadowBlur = 0;
+  }
+  
+  // Eased web animation loop
+  function animateWeb() {
+    if (!loaderActive) return;
+    
+    currentWebProgress += (targetWebProgress - currentWebProgress) * 0.08;
+    drawWeb(currentWebProgress);
+    
+    const displayPercent = Math.round(targetWebProgress * 100);
+    loadingPercent.textContent = `${displayPercent}%`;
+    
+    if (currentWebProgress < 0.999 || targetWebProgress < 1) {
+      requestAnimationFrame(animateWeb);
+    } else {
+      setTimeout(() => {
+        loadingOverlay.style.opacity = 0;
+        setTimeout(() => {
+          loadingOverlay.style.display = 'none';
+          loaderActive = false;
+        }, 500);
+        
+        canvas.style.opacity = 1;
+        renderFrame(0);
+      }, 400);
+    }
+  }
+
+  // Preload images
+  function preloadImages() {
+    requestAnimationFrame(animateWeb);
+    
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new Image();
+      img.src = currentFrame(i);
+      img.onload = () => {
+        loadedCount++;
+        targetWebProgress = loadedCount / frameCount;
+      };
+      img.onerror = () => {
+        loadedCount++;
+        targetWebProgress = loadedCount / frameCount;
+      };
+      images.push(img);
+    }
+  }
+  
+  // Draw current frame on canvas
+  function renderFrame(index) {
+    if (images[index] && images[index].complete) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(images[index], 0, 0, canvas.width, canvas.height);
+    }
+  }
+  
+  // Scroll handler
+  function handleScroll() {
+    const rect = scrollTrack.getBoundingClientRect();
+    const trackHeight = scrollTrack.clientHeight;
+    const viewHeight = window.innerHeight;
+    
+    // Calculate progress of scroll track through the viewport
+    const totalScrollable = trackHeight - viewHeight;
+    let progress = -rect.top / totalScrollable;
+    progress = Math.max(0, Math.min(1, progress));
+    
+    const frameIndex = Math.floor(progress * (frameCount - 1));
+    
+    // Draw the image sequence
+    requestAnimationFrame(() => renderFrame(frameIndex));
+    
+    // --- Scroll-driven Parallax and Opacity Animations ---
+    
+    // 1. Zoom/scale titles and move them outwards
+    const titleTranslateX = progress * 150; // px
+    titleBeing.style.transform = `translateX(${-titleTranslateX}px) scale(${1 + progress * 0.15})`;
+    titleFrzi.style.transform = `translateX(${titleTranslateX}px) scale(${1 + progress * 0.15})`;
+    
+    // 2. Animate Subheadlines
+    subHero.style.transform = `translateY(${progress * -30}px) scale(${1 - progress * 0.05})`;
+    subLegend.style.transform = `translateY(${progress * -30}px) scale(${1 - progress * 0.05})`;
+    
+    // 3. Fade in/out left annotations (active early: 5% to 40%)
+    if (progress < 0.05) {
+      annotLeft.style.opacity = 0;
+      annotLeft.style.transform = 'translateX(-20px)';
+    } else if (progress >= 0.05 && progress < 0.40) {
+      const phase = (progress - 0.05) / 0.15;
+      const activePhase = Math.min(1, phase);
+      
+      let opacity = activePhase;
+      if (progress > 0.30) {
+        opacity = 1 - (progress - 0.30) / 0.10;
+      }
+      
+      annotLeft.style.opacity = opacity;
+      annotLeft.style.transform = `translateX(${(1 - opacity) * -20}px)`;
+    } else {
+      annotLeft.style.opacity = 0;
+      annotLeft.style.transform = 'translateX(-20px)';
+    }
+    
+    // 4. Fade in/out right annotations (active late: 45% to 85%)
+    if (progress < 0.45) {
+      annotRight.style.opacity = 0;
+      annotRight.style.transform = 'translateX(20px)';
+    } else if (progress >= 0.45 && progress < 0.85) {
+      const phase = (progress - 0.45) / 0.15;
+      const activePhase = Math.min(1, phase);
+      
+      let opacity = activePhase;
+      if (progress > 0.75) {
+        opacity = 1 - (progress - 0.75) / 0.10;
+      }
+      
+      annotRight.style.opacity = opacity;
+      annotRight.style.transform = `translateX(${(1 - opacity) * 20}px)`;
+    } else {
+      annotRight.style.opacity = 0;
+      annotRight.style.transform = 'translateX(20px)';
+    }
+  }
+  
+  // Initialize
+  preloadImages();
+  window.addEventListener('scroll', handleScroll);
+  
+  // --- About Page Scroll Observer & Parallax ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  document.querySelectorAll('.fade-in-up').forEach((el) => {
+    observer.observe(el);
+  });
+
+  const parallaxContainer = document.querySelector('.parallax-container');
+  const parallaxElements = document.querySelectorAll('.parallax-element');
+
+  if (parallaxContainer && window.matchMedia("(min-width: 768px)").matches) {
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX - window.innerWidth / 2);
+      const y = (e.clientY - window.innerHeight / 2);
+
+      parallaxElements.forEach(el => {
+        const speed = parseFloat(el.getAttribute('data-speed')) || 0.02;
+        el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+      });
+    });
+  }
+  
+  // --- Spider Follow Cursor Animation ---
+  const spider = document.getElementById('spider-cursor');
+  let mouseX = 0, mouseY = 0;
+  let spiderX = 0, spiderY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+  });
+
+  function animateSpider() {
+      // Offset spider slightly so it sits next to the cursor
+      spiderX += (mouseX - spiderX + 15) * 0.08; 
+      spiderY += (mouseY - spiderY + 15) * 0.08;
+      
+      const dx = mouseX - spiderX;
+      const dy = mouseY - spiderY;
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+      if (spider) {
+          spider.style.transform = `translate(${spiderX}px, ${spiderY}px) rotate(${angle + 90}deg)`;
+      }
+      requestAnimationFrame(animateSpider);
+  }
+
+  // Start the spider tracking animation loop
+  animateSpider();
+})();
+</script>
+
+<script>
+(function() {
+  // --- Contact Page Overlay ---
+  const contactOverlay = document.getElementById('contact-page-overlay');
+  const navContactLink = document.getElementById('nav-link-contact');
+  const btnContactBackHome = document.getElementById('btn-contact-back-home');
+  
+  const canvas = document.getElementById('contact-web-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const container = document.getElementById('social-rope-container');
+  const items = document.querySelectorAll('.social-rope-item');
+  
+  let width = container.clientWidth;
+  
+  function resize() {
+    width = container.clientWidth;
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  
+  const nodes = [];
+  const numNodes = items.length;
+  
+  for (let i = 0; i < numNodes; i++) {
+    nodes.push({
+      element: items[i],
+      ax: 0,
+      ay: 0,
+      x: 0,
+      y: 0,
+      targetLen: 160 + i * 15 + Math.random() * 20, // staggered lengths
+      len: 0,
+      lenVel: 0,
+      theta: 0,
+      omega: 0,
+      damping: 0.985,
+      isHovered: false,
+      clickPauseTime: 0
+    });
+  }
+  
+  nodes.forEach((node) => {
+    // Mouse hover events
+    node.element.addEventListener('mouseenter', () => {
+      node.isHovered = true;
+    });
+    node.element.addEventListener('mouseleave', () => {
+      node.isHovered = false;
+    });
+    
+    // Mobile Touch events
+    node.element.addEventListener('touchstart', () => {
+      node.isHovered = true;
+    }, { passive: true });
+    node.element.addEventListener('touchend', () => {
+      node.isHovered = false;
+    }, { passive: true });
+    
+    node.element.addEventListener('click', () => {
+      node.clickPauseTime = 60;
+      node.omega = 0;
+      node.theta = 0;
+    });
+  });
+  
+  let animationTriggered = false;
+  let physicsActive = false;
+  
+  function openContactPage(e) {
+    if (e) e.preventDefault();
+    if (contactOverlay) {
+      contactOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      contactOverlay.classList.add('opacity-100', 'pointer-events-auto');
+      document.body.classList.add('overflow-hidden');
+      
+      animationTriggered = true;
+      nodes.forEach((node, idx) => {
+        node.len = 0;
+        node.lenVel = 12 + idx * 2.5;
+        node.theta = -0.4 + idx * 0.2;
+        node.omega = (Math.random() - 0.5) * 0.08;
+      });
+      
+      if (!physicsActive) {
+        physicsActive = true;
+        requestAnimationFrame(updatePhysics);
+      }
+    }
+  }
+  
+  function closeContactPage() {
+    if (contactOverlay) {
+      contactOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+      contactOverlay.classList.add('opacity-0', 'pointer-events-none');
+      document.body.classList.remove('overflow-hidden');
+      animationTriggered = false;
+      physicsActive = false;
+    }
+  }
+  
+  if (navContactLink) navContactLink.addEventListener('click', openContactPage);
+  if (btnContactBackHome) btnContactBackHome.addEventListener('click', closeContactPage);
+  
+  function updatePhysics() {
+    if (!physicsActive) return;
+    
+    ctx.clearRect(0, 0, width, canvas.height);
+    const time = Date.now() * 0.001;
+    
+    nodes.forEach((node, idx) => {
+      node.ax = width * (idx + 1) / (numNodes + 1);
+      
+      if (animationTriggered) {
+        const springK = 0.08;
+        const friction = 0.92;
+        const force = (node.targetLen - node.len) * springK;
+        node.lenVel = (node.lenVel + force) * friction;
+        node.len += node.lenVel;
+      }
+      
+      if (node.clickPauseTime > 0) {
+        node.clickPauseTime--;
+        node.omega = 0;
+        node.theta = 0;
+      } else if (node.isHovered) {
+        // Stop swinging immediately on hover or touch so user can easily tap
+        node.omega = 0;
+        node.theta += (0 - node.theta) * 0.18; // smooth ease to vertical rest
+      } else {
+        const g = 0.35;
+        const alpha = -g * Math.sin(node.theta) / (node.len || 1);
+        const wind = Math.sin(time + idx * 2) * 0.0003 + (Math.random() - 0.5) * 0.0001;
+        node.omega = (node.omega + alpha + wind) * node.damping;
+        node.theta += node.omega;
+      }
+      
+      node.x = node.ax + node.len * Math.sin(node.theta);
+      node.y = node.ay + node.len * Math.cos(node.theta);
+      
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+      ctx.lineWidth = 0.7;
+      ctx.shadowBlur = 3;
+      ctx.shadowColor = '#ff5446';
+      
+      const midX = (node.ax + node.x) / 2 + node.omega * 40;
+      const midY = (node.ay + node.y) / 2;
+      ctx.moveTo(node.ax, node.ay);
+      ctx.quadraticCurveTo(midX, midY, node.x, node.y);
+      ctx.stroke();
+      
+      const elWidth = 56;
+      node.element.style.left = `${node.x - elWidth / 2}px`;
+      node.element.style.top = `${node.y}px`;
+      node.element.style.transform = `rotate(${node.theta * 180 / Math.PI}deg) scale(${node.isHovered ? 1.2 : 1.0})`;
+    });
+    
+    ctx.shadowBlur = 0;
+    ctx.lineWidth = 0.5;
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    for (let i = 0; i < numNodes - 1; i++) {
+      const n1 = nodes[i], n2 = nodes[i+1];
+      const p1x = n1.ax + (n1.x - n1.ax) * 0.5, p1y = n1.ay + (n1.y - n1.ay) * 0.5;
+      const p2x = n2.ax + (n2.x - n2.ax) * 0.5, p2y = n2.ay + (n2.y - n2.ay) * 0.5;
+      ctx.beginPath();
+      ctx.moveTo(p1x, p1y);
+      ctx.quadraticCurveTo((p1x + p2x)/2, (p1y + p2y)/2 + 15, p2x, p2y);
+      ctx.stroke();
+    }
+    
+    requestAnimationFrame(updatePhysics);
+  }
+})();
+</script>
+</body></html>

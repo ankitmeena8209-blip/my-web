@@ -1,0 +1,5 @@
+frames/
+*.zip
+.DS_Store
+*.log
+stitch_3d_animated_social_hub/
